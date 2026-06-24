@@ -146,15 +146,107 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(226, 226, 226, 0.5);
         }
+
+        /* Enhanced Transitions and Animations */
+        .submission-card {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .submission-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 30px 60px -15px rgba(0, 91, 191, 0.2), 0 15px 30px -10px rgba(0, 0, 0, 0.05) !important;
+            border-color: rgba(0, 91, 191, 0.4) !important;
+        }
+
+        /* Shimmer Reflection for Buttons */
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 30%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(25deg);
+            animation: shimmer 3.5s infinite ease-in-out;
+        }
+        @keyframes shimmer {
+            0% { left: -60%; }
+            15% { left: 140%; }
+            100% { left: 140%; }
+        }
+
+        /* Slow Pulse for Watermark */
+        .pulse-watermark {
+            animation: pulse-glow 6s ease-in-out infinite alternate;
+        }
+        @keyframes pulse-glow {
+            0% { transform: scale(0.98); opacity: 0.03; }
+            100% { transform: scale(1.05); opacity: 0.07; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f3f3f4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c1c6d6;
+            border-radius: 5px;
+            border: 2px solid #f3f3f4;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a1a6b6;
+        }
+
+        /* Page Transition Animations */
+        body {
+            animation: fadeInPage 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            opacity: 0;
+        }
+        body.page-exit {
+            animation: fadeOutPage 0.3s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+        }
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeOutPage {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+
     </style>
 </head>
 <body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
     <header class="fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-surface-container/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
-        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 flex justify-between items-center w-full">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-3 flex justify-between items-center w-full">
             <div class="flex items-center gap-2 cursor-pointer" onclick="location.href='index.html'">
                 <img src="logo.png" alt="IWWA Mumbai" class="h-12 object-contain"/>
             </div>
-            <nav class="hidden md:flex items-center gap-8">
+            <nav class="relative hidden md:flex items-center gap-8">
                 <a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 font-bold font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="index.html">Home</a>
                 <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="delegate-registration.html">Delegate Registration</a>
                 <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="sponsorship.html">Sponsorship</a>
@@ -188,12 +280,7 @@
         </div>
     </div>
     <main class="pt-24 overflow-x-hidden">
-        <!-- Top View: Blank screen (h-screen minus navbar height) -->
-        <section class="h-[calc(100vh-72px)] flex items-center justify-center pointer-events-none">
-            <!-- Completely empty top view -->
-        </section>
-
-        <!-- Bottom View: Fullscreen GIF Section -->
+        <!-- Top View: Fullscreen GIF Section (Hero Media) -->
         <section class="relative w-full h-screen overflow-hidden flex items-center justify-center">
             <!-- Fullscreen GIF Background -->
             <img class="absolute inset-0 w-full h-full object-cover" src="IWWMA.gif" alt="IWWA Mumbai" />
@@ -203,7 +290,7 @@
             <!-- Overlay Content -->
             <div class="relative z-10 w-full max-w-5xl mx-auto px-6 text-center flex flex-col items-center justify-center h-full">
                 <!-- Large Watermark text "IWWA" -->
-                <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.05]">
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.05] pulse-watermark">
                     <span class="font-bold text-[24vw] md:text-[18vw] text-white">IWWA</span>
                 </div>
                 
@@ -223,12 +310,28 @@
                 </div>
             </div>
         </section>
+
+        <!-- Bottom View: Content Section -->
+        <section class="flex items-center justify-center py-16 px-4 bg-background">
+            <div class="relative mx-auto w-full max-w-2xl">
+                <div class="submission-card" style="background: linear-gradient(135deg, #ffffff 0%, #f3f3f4 100%); border: 1px solid rgba(193, 198, 214, 0.3); border-radius: 2rem; padding: 48px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+                    <h2 class="font-headline-lg text-headline-md md:text-headline-lg text-on-surface mb-4">Technical Paper and Submissions</h2>
+                    <p class="font-medium text-secondary text-label-lg">Please visit</p>
+                    <a href="https://selectmyarticle.com/" target="_blank" class="bg-primary text-on-primary font-label-lg text-label-lg px-8 py-4 rounded-full hover:bg-primary-container active:scale-95 transition-all duration-200 ripple-effect shadow-sm inline-flex items-center gap-2 shimmer-btn">
+                        Visit Platform <span class="material-symbols-outlined" style="font-size: 20px;">open_in_new</span>
+                    </a>
+                    <p class="font-body-md text-on-surface-variant max-w-[280px]">And select <span class="font-bold text-on-surface">“URBAN WATER – ISSUES &amp; SOLUTIONS”</span> platform</p>
+                </div>
+                <!-- Decorative background element -->
+                <div class="absolute -z-10 -top-4 -right-4 w-full h-full bg-primary/5 rounded-lg"></div>
+            </div>
+        </section>
     </main>
     <!-- Footer -->
     <footer class="w-full py-8 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-container-low dark:bg-surface-dim border-t border-outline-variant/20">
         <div class="flex flex-col gap-2 items-center md:items-start">
             <span class="font-headline-md text-headline-md font-semibold text-secondary dark:text-on-secondary-fixed">IWWA Mumbai</span>
-            <p class="text-on-surface-variant dark:text-on-tertiary-fixed-variant font-body-md text-body-md">© 2024 IWWA Mumbai. All rights reserved.</p>
+            <p class="text-on-surface-variant dark:text-on-tertiary-fixed-variant font-body-md text-body-md">© 2026 IWWA Mumbai. All rights reserved.</p>
         </div>
         <nav class="flex flex-wrap justify-center gap-6">
             <a class="text-on-surface-variant dark:text-on-tertiary-fixed-variant font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
@@ -295,6 +398,23 @@
         menuTrigger.addEventListener('click', openMenu);
         closeMenuBtn.addEventListener('click', closeMenu);
         menuBackdrop.addEventListener('click', closeMenu);
+
+        // Smooth Page transitions
+        document.querySelectorAll('a').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && (href.endsWith('.html') || href === 'index.html' || href.startsWith('delegate') || href.startsWith('sponsor') || href.startsWith('advertisement'))) {
+                link.addEventListener('click', function(e) {
+                    if (link.getAttribute('target') === '_blank' || e.metaKey || e.ctrlKey) return;
+                    e.preventDefault();
+                    document.body.classList.add('page-exit');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 300);
+                });
+            }
+        });
+
+
     </script>
 </body>
 </html>

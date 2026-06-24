@@ -149,8 +149,10 @@
 
         /* Main Content Layout */
         .main-container {
-            margin-top: 100px;
-            padding: 48px;
+            padding-top: 148px; /* 100px header offset + 48px padding */
+            padding-bottom: 48px;
+            padding-left: 48px;
+            padding-right: 48px;
             max-width: 1280px;
             margin-left: auto;
             margin-right: auto;
@@ -162,8 +164,10 @@
         @media (max-width: 1024px) {
             .main-container {
                 grid-template-columns: 1fr;
-                padding: 16px;
-                margin-top: 80px;
+                padding-top: 96px; /* 80px header offset + 16px padding */
+                padding-bottom: 16px;
+                padding-left: 16px;
+                padding-right: 16px;
             }
         }
 
@@ -175,6 +179,11 @@
             border: 1px solid #e0e0e0;
             box-shadow: 0px 2px 4px rgba(0,0,0,0.05);
             height: fit-content;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
         }
 
         .sponsor-tier-card {
@@ -217,13 +226,13 @@
             border: 2px solid #c1c6d6;
             background: white;
             font-family: 'Inter', sans-serif;
-            transition: all 0.2s ease;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
             outline: none;
         }
 
         .form-input:focus, input.form-input:focus, select.form-input:focus, textarea.form-input:focus {
             border-color: #1a73e8;
-            box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
+            box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.2);
         }
 
         .form-label {
@@ -274,16 +283,88 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Shimmer button animation */
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 30%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(25deg);
+            animation: shimmer 3.5s infinite ease-in-out;
+        }
+        @keyframes shimmer {
+            0% { left: -60%; }
+            15% { left: 140%; }
+            100% { left: 140%; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c1c6d6;
+            border-radius: 5px;
+            border: 2px solid #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a1a6b6;
+        }
+
+        /* Page Transition Animations */
+        body {
+            animation: fadeInPage 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            opacity: 0;
+        }
+        body.page-exit {
+            animation: fadeOutPage 0.3s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+        }
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeOutPage {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+
     </style>
 </head>
 <body class="bg-background text-on-surface overflow-x-hidden">
-    <!-- Header Navigation -->
     <header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
-        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 flex justify-between items-center w-full">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-3 flex justify-between items-center w-full">
             <div class="flex items-center gap-2 cursor-pointer" onclick="location.href='index.html'">
                 <img src="logo.png" alt="IWWA Mumbai" class="h-12 object-contain"/>
             </div>
-            <nav class="hidden md:flex items-center gap-8">
+            <nav class="relative hidden md:flex items-center gap-8">
                 <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="index.html">Home</a>
                 <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="delegate-registration.html">Delegate Registration</a>
                 <a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 font-bold font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="sponsorship.html">Sponsorship</a>
@@ -383,7 +464,7 @@
 
                 <!-- Submit Button -->
                 <div class="mt-8">
-                    <button id="submit-btn" class="btn-primary ripple-effect w-full py-5 text-headline-md bg-primary hover:bg-primary-container text-white rounded-full font-bold transition-all flex items-center justify-center gap-2" type="submit">
+                    <button id="submit-btn" class="btn-primary ripple-effect w-full py-5 text-headline-md bg-primary hover:bg-primary-container text-white rounded-full font-bold transition-all flex items-center justify-center gap-2 shimmer-btn" type="submit">
                         <span id="btn-text">Submit Registration</span>
                         <div id="btn-spinner" class="spinner"></div>
                     </button>
@@ -409,7 +490,7 @@
     <footer class="w-full py-8 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-container-low border-t border-outline-variant/20">
         <div class="flex flex-col gap-2 items-center md:items-start">
             <span class="font-headline-md text-headline-md font-semibold text-secondary">IWWA Mumbai</span>
-            <p class="text-on-surface-variant font-body-md text-body-md">© 2024 IWWA Mumbai. All rights reserved.</p>
+            <p class="text-on-surface-variant font-body-md text-body-md">© 2026 IWWA Mumbai. All rights reserved.</p>
         </div>
         <nav class="flex flex-wrap justify-center gap-6">
             <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
@@ -539,6 +620,23 @@
         menuTrigger.addEventListener('click', openMenu);
         closeMenuBtn.addEventListener('click', closeMenu);
         menuBackdrop.addEventListener('click', closeMenu);
+
+        // Smooth Page transitions
+        document.querySelectorAll('a').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && (href.endsWith('.html') || href === 'index.html' || href.startsWith('delegate') || href.startsWith('sponsor') || href.startsWith('advertisement'))) {
+                link.addEventListener('click', function(e) {
+                    if (link.getAttribute('target') === '_blank' || e.metaKey || e.ctrlKey) return;
+                    e.preventDefault();
+                    document.body.classList.add('page-exit');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 300);
+                });
+            }
+        });
+
+
 
         // Ripple effect logic for submit/primary buttons
         document.querySelectorAll('.ripple-effect').forEach(button => {
