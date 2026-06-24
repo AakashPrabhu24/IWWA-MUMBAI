@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Advertisement Standee Registration | IWWA Mumbai</title>
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#d3e1f6",
+                    "on-secondary-container": "#566475",
+                    "primary-fixed": "#d8e2ff",
+                    "surface": "#f9f9f9",
+                    "outline": "#727785",
+                    "secondary-fixed": "#d6e4f9",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#bac8dc",
+                    "on-primary-container": "#ffffff",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f3f3f4",
+                    "outline-variant": "#c1c6d6",
+                    "on-primary-fixed-variant": "#004493",
+                    "on-primary-fixed": "#001a41",
+                    "on-tertiary-fixed-variant": "#454748",
+                    "on-primary": "#ffffff",
+                    "on-background": "#1a1c1c",
+                    "secondary": "#525f71",
+                    "surface-container-high": "#e8e8e8",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#f9f9f9",
+                    "tertiary-fixed-dim": "#c5c7c8",
+                    "on-secondary-fixed": "#0f1c2c",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#e1e3e4",
+                    "surface-container": "#eeeeee",
+                    "inverse-surface": "#2f3131",
+                    "on-surface-variant": "#414754",
+                    "surface-dim": "#dadada",
+                    "on-tertiary-container": "#ffffff",
+                    "surface-variant": "#e2e2e2",
+                    "primary": "#005bbf",
+                    "background": "#f9f9f9",
+                    "primary-fixed-dim": "#adc7ff",
+                    "inverse-primary": "#adc7ff",
+                    "inverse-on-surface": "#f0f1f1",
+                    "on-surface": "#1a1c1c",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#5c5e60",
+                    "tertiary-container": "#757778",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-secondary-fixed-variant": "#3a4859",
+                    "primary-container": "#1a73e8",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#005bc0",
+                    "on-tertiary-fixed": "#191c1d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "margin-desktop": "48px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Inter', sans-serif;
+            color: #1a1c1c;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .form-input, input.form-input, select.form-input, textarea.form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        .form-input:focus, input.form-input:focus, select.form-input:focus, textarea.form-input:focus {
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
+        }
+        .card-shadow {
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.05);
+        }
+        .card-shadow:hover {
+            box-shadow: 0px 12px 24px rgba(0,0,0,0.1);
+            transform: scale(1.01);
+        }
+        .btn-primary {
+            background-color: #1a73e8;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            background-color: #1557b0;
+            transform: scale(1.02);
+        }
+        .btn-primary:active {
+            transform: scale(0.95);
+        }
+        .glass-card {
+            background: white;
+            border-radius: 2rem;
+            padding: 32px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+        /* Ripple Effect */
+        .ripple-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-animation 600ms linear;
+            pointer-events: none;
+        }
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        /* Spinner */
+        .spinner {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- TopNavBar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 flex justify-between items-center w-full">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="location.href='index.html'">
+                <img src="logo.png" alt="IWWA Mumbai" class="h-12 object-contain"/>
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="index.html">Home</a>
+                <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="delegate-registration.html">Delegate Registration</a>
+                <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="sponsorship.html">Sponsorship</a>
+                <a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 font-bold font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="advertisement-standee.html">Advertisement Standee</a>
+            </nav>
+            <button id="menu-trigger" class="md:hidden p-2 text-primary" aria-label="Open navigation menu">
+                <span class="material-symbols-outlined text-[28px] pointer-events-none">menu</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay (Drawer) -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+        <!-- Backdrop -->
+        <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+        <!-- Drawer Panel -->
+        <div class="absolute right-0 top-0 h-full w-64 bg-white shadow-2xl flex flex-col p-6 z-50">
+            <div class="flex justify-between items-center mb-8">
+                <span class="font-display-lg text-headline-lg font-bold text-primary">Menu</span>
+                <button id="close-menu" class="p-2 text-on-surface hover:bg-surface-container-low rounded-full" aria-label="Close navigation menu">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <nav class="flex flex-col gap-6">
+                <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="index.html">Home</a>
+                <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="delegate-registration.html">Delegate Registration</a>
+                <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="sponsorship.html">Sponsorship</a>
+                <a class="text-primary font-bold font-label-lg text-lg hover:text-primary-container" href="advertisement-standee.html">Advertisement Standee</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content Canvas -->
+    <main class="pt-32 pb-20 px-4 md:px-12 max-w-7xl mx-auto">
+        <header class="mb-12 text-center md:text-left">
+            <h1 class="font-display-lg-mobile md:font-display-lg text-primary mb-2 uppercase tracking-wide">IWWA National Seminar</h1>
+            <p class="text-secondary font-headline-md font-bold uppercase tracking-wider text-xl mb-4">Urban Water – Issues &amp; Solutions</p>
+            <p class="text-secondary font-body-lg max-w-2xl">Elevate your brand presence at the IWWA National Seminar. Secure your prime advertisement spot with our premium standee placements.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Left Column: Info & Pricing Card -->
+            <div class="lg:col-span-5 space-y-gutter">
+                <div class="glass-card bg-white border border-outline-variant/30 rounded-lg p-8 shadow-sm">
+                    <h2 class="text-primary font-bold text-headline-md mb-6 uppercase tracking-wide">
+                        Advertisement <br/>Display Standees
+                    </h2>
+                    <div class="bg-[#d3e1f6] text-[#005bbf] rounded-[1.5rem] p-6 text-center border border-primary/20">
+                        <span class="font-label-md uppercase tracking-wider block mb-2 font-semibold">Pricing</span>
+                        <div class="font-extrabold text-2xl md:text-3xl mb-1">
+                            ₹10,000<span class="text-lg font-normal"> / standee</span>
+                        </div>
+                        <p class="text-sm opacity-80">+ 5% GST applicable</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Form -->
+            <div class="lg:col-span-7">
+                <div class="bg-white p-8 md:p-10 rounded-lg card-shadow border border-outline-variant/20">
+                    <h2 class="font-headline-md text-primary mb-8 flex items-center gap-3">
+                        <span class="material-symbols-outlined">app_registration</span>
+                        Advertisement Standee Form
+                    </h2>
+                    <!-- Form Block -->
+                    <form class="space-y-6" id="standeeForm">
+                        <div class="space-y-2">
+                            <label class="text-label-lg text-on-surface-variant ml-4 font-semibold">Organisation</label>
+                            <input id="orgInput" class="form-input" placeholder="Enter your full company name" required="" type="text">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-label-lg text-on-surface-variant ml-4 font-semibold">Email</label>
+                            <input id="emailInput" class="form-input" placeholder="corporate@organization.com" required="" type="email">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-label-lg text-on-surface-variant ml-4 font-semibold">Mobile</label>
+                            <input id="mobileInput" class="form-input" placeholder="10-digit mobile number" required="" type="tel" pattern="[0-9]{10}">
+                        </div>
+
+                        <button id="submit-btn" class="w-full btn-primary py-4 text-body-lg ripple-effect font-bold flex items-center justify-center gap-2" type="submit">
+                            <span id="btn-text">Submit Registration</span>
+                            <div id="btn-spinner" class="spinner"></div>
+                        </button>
+                    </form>
+
+                    <!-- Success State Overlay -->
+                    <div id="success-state" style="display: none; text-align: center; padding: 40px 0;">
+                        <div class="success-icon" style="width: 80px; height: 80px; background: rgba(26, 115, 232, 0.1); color: #005bbf; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
+                            <span class="material-symbols-outlined" style="font-size: 48px;">check_circle</span>
+                        </div>
+                        <h2 class="font-display-lg text-headline-lg font-bold text-on-surface mb-4">Registration Successful!</h2>
+                        <p class="text-on-surface-variant font-body-md mb-8">Thank you for registering. Your details have been successfully saved in our database.</p>
+                        <button class="btn-primary ripple-effect px-8 py-3 rounded-full font-bold transition-all text-white bg-primary hover:bg-primary-container" onclick="resetForm()">
+                            Back to Form
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-8 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-container-low border-t border-outline-variant/20">
+        <div class="flex flex-col gap-2 items-center md:items-start">
+            <span class="font-headline-md text-headline-md font-semibold text-secondary">IWWA Mumbai</span>
+            <p class="text-on-surface-variant font-body-md text-body-md">© 2024 IWWA Mumbai. All rights reserved.</p>
+        </div>
+        <nav class="flex flex-wrap justify-center gap-6">
+            <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+            <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+            <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Contact Us</a>
+            <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">About</a>
+        </nav>
+    </footer>
+
+    <script>
+        // Google Apps Script Web App URL (Central Router URL)
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztRPlgagtxBh8r4pKnElD4gdH5kJamus6U9Y7rGegeF17zBolZgFgHjxjHKuVBoQ4y1Q/exec'; // Replace with deployed Web App URL
+
+        const form = document.getElementById('standeeForm');
+        const successState = document.getElementById('success-state');
+        const orgInput = document.getElementById('orgInput');
+        const emailInput = document.getElementById('emailInput');
+        const mobileInput = document.getElementById('mobileInput');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnSpinner = document.getElementById('btn-spinner');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Check if Apps Script Web App URL is configured
+            if (SCRIPT_URL === 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE' || SCRIPT_URL === '') {
+                alert("Configuration Error: SCRIPT_URL has not been set. Please configure the Google Apps Script Web App URL at the top of the script.");
+                return;
+            }
+
+            // Set loading state on submit button
+            submitBtn.disabled = true;
+            btnText.classList.add('hidden');
+            btnSpinner.style.display = 'block';
+
+            try {
+                const params = new URLSearchParams({
+                    formType: 'standee',
+                    organisation: orgInput.value.trim(),
+                    email: emailInput.value.trim(),
+                    mobile: mobileInput.value.trim()
+                });
+
+                const submitUrl = SCRIPT_URL + '?' + params.toString();
+
+                // Use a hidden iframe to make the GET request
+                let iframe = document.getElementById('hidden-iframe');
+                if (!iframe) {
+                    iframe = document.createElement('iframe');
+                    iframe.id = 'hidden-iframe';
+                    iframe.style.display = 'none';
+                    document.body.appendChild(iframe);
+                }
+                iframe.src = submitUrl;
+
+                // Show success after allowing time for the request to complete
+                setTimeout(() => {
+                    // Transition to success state
+                    form.style.transition = 'opacity 0.4s ease';
+                    form.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        form.classList.add('hidden');
+                        successState.style.display = 'block';
+                        successState.style.opacity = '0';
+                        successState.style.transform = 'translateY(10px)';
+                        
+                        requestAnimationFrame(() => {
+                            successState.style.transition = 'all 0.5s ease';
+                            successState.style.opacity = '1';
+                            successState.style.transform = 'translateY(0)';
+                        });
+                    }, 400);
+
+                    resetSubmitButton();
+                }, 2000);
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                alert("An error occurred during submission. Please try again.");
+                resetSubmitButton();
+            }
+        });
+
+        function resetSubmitButton() {
+            submitBtn.disabled = false;
+            btnText.classList.remove('hidden');
+            btnSpinner.style.display = 'none';
+        }
+
+        function resetForm() {
+            form.reset();
+            
+            successState.style.transition = 'opacity 0.4s ease';
+            successState.style.opacity = '0';
+            
+            setTimeout(() => {
+                successState.style.display = 'none';
+                form.classList.remove('hidden');
+                form.style.transition = 'opacity 0.4s ease';
+                form.style.opacity = '1';
+                resetSubmitButton();
+            }, 400);
+        }
+
+        // Mobile Menu Drawer Logic
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuBackdrop = document.getElementById('mobile-menu-backdrop');
+        const menuTrigger = document.getElementById('menu-trigger');
+        const closeMenuBtn = document.getElementById('close-menu');
+
+        function openMenu() {
+            mobileMenu.classList.remove('translate-x-full');
+            menuBackdrop.classList.remove('pointer-events-none', 'opacity-0');
+            menuBackdrop.classList.add('opacity-100');
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.add('translate-x-full');
+            menuBackdrop.classList.remove('opacity-100');
+            menuBackdrop.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        menuTrigger.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        menuBackdrop.addEventListener('click', closeMenu);
+
+        // Ripple effect logic for submit/primary buttons
+        document.querySelectorAll('.ripple-effect').forEach(button => {
+            button.addEventListener('click', function(e) {
+                let x = e.clientX - e.target.getBoundingClientRect().left;
+                let y = e.clientY - e.target.getBoundingClientRect().top;
+
+                let ripples = document.createElement('span');
+                ripples.classList.add('ripple');
+                ripples.style.left = x + 'px';
+                ripples.style.top = y + 'px';
+                this.appendChild(ripples);
+
+                setTimeout(() => {
+                    ripples.remove();
+                }, 600);
+            });
+        });
+    </script>
+</body>
+</html>

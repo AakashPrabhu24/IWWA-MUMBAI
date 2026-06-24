@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Delegate Registration | IWWA Mumbai</title>
+<!-- Fonts and Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            /* Colors based on provided theme and edit request */
+            --primary: #1a73e8; /* Google Blue as requested */
+            --primary-container: #1a73e8;
+            --on-primary: #ffffff;
+            --background: #f9f9f9;
+            --surface: #ffffff;
+            --on-surface: #1a1c1c;
+            --on-surface-variant: #414754;
+            --outline-variant: rgba(193, 198, 214, 0.5);
+            --secondary: #525f71;
+            --surface-container-low: #f3f3f4;
+            --error: #ba1a1a; /* Error state color */
+            
+            /* Spacing & Borders */
+            --radius-default: 1rem;
+            --radius-full: 9999px;
+            --container-max: 1280px;
+            --margin-desktop: 48px;
+            --margin-mobile: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--on-surface);
+            line-height: 1.5;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Typography */
+        h1, .logo {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+        }
+
+        .display-lg {
+            font-size: 56px;
+            line-height: 64px;
+            letter-spacing: -0.02em;
+        }
+
+        .headline-lg {
+            font-size: 32px;
+            line-height: 40px;
+        }
+
+        /* Layout */
+        .container {
+            width: 100%;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--margin-desktop);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--margin-mobile);
+            }
+            .display-lg {
+                font-size: 36px;
+                line-height: 44px;
+            }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--outline-variant);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo {
+            font-size: 24px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 32px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        nav a.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            font-weight: 700;
+        }
+
+        nav a:hover:not(.active) {
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--on-primary);
+            padding: 10px 24px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            scale: 0.95;
+        }
+
+        /* Main Content */
+        main {
+            flex-grow: 1;
+            padding-top: 140px;
+            padding-bottom: 64px;
+            position: relative;
+        }
+
+        /* Blobs */
+        .blob {
+            position: absolute;
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+        }
+
+        .blob-1 {
+            top: -100px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background: rgba(26, 115, 232, 0.15);
+        }
+
+        .blob-2 {
+            bottom: -50px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: rgba(82, 95, 113, 0.1);
+        }
+
+        /* Registration Form */
+        .form-section {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .form-intro {
+            margin-bottom: 48px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .form-intro p {
+            color: var(--on-surface-variant);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 16px auto 0;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--outline-variant);
+            border-radius: 2rem;
+            padding: 48px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            text-align: left;
+            animation: slideUp 0.6s ease-out 0.1s both;
+        }
+
+        @media (max-width: 640px) {
+            .card { padding: 24px; }
+            nav { display: none; }
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 640px) {
+            .grid-2 { grid-template-columns: 1fr; margin-bottom: 0; }
+            .grid-2 .form-field { margin-bottom: 24px; }
+        }
+
+        /* Form Fields */
+        .form-field {
+            position: relative;
+            margin-bottom: 4px; /* Reduced to leave space for error message */
+        }
+
+        .form-field-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .form-field .icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--on-surface-variant);
+            pointer-events: none;
+            transition: color 0.2s;
+        }
+
+        .form-field input, .form-field select {
+            width: 100%;
+            padding: 16px 16px 16px 52px;
+            border: 2px solid var(--outline-variant);
+            border-radius: 12px;
+            font-size: 16px;
+            background: transparent;
+            outline: none;
+            transition: border-color 0.2s;
+            appearance: none;
+        }
+
+        .form-field input:focus, .form-field select:focus {
+            border-color: var(--primary);
+        }
+
+        .form-field label {
+            position: absolute;
+            left: 52px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--on-surface-variant);
+            pointer-events: none;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        /* Floating Label Logic */
+        .form-field:focus-within label,
+        .form-field input:not(:placeholder-shown) + label,
+        .form-field select + label {
+            transform: translateY(-38px) scale(0.85);
+            left: 12px;
+            color: var(--on-surface-variant);
+            background: white;
+            padding: 0 8px;
+        }
+
+        .form-field:focus-within label {
+            color: var(--primary);
+        }
+
+        .select-arrow {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--on-surface-variant);
+        }
+
+        .submit-area {
+            margin-top: 32px;
+        }
+
+        .btn-large {
+            width: 100%;
+            padding: 18px;
+            font-size: 18px;
+            justify-content: center;
+        }
+
+        .privacy-note {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--on-surface-variant);
+        }
+
+        .privacy-note a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Error States styling */
+        .error-msg {
+            color: var(--error);
+            font-size: 12px;
+            margin-top: 4px;
+            font-weight: 500;
+            display: none;
+            text-align: left;
+            animation: slideUp 0.3s ease-out;
+            padding-left: 4px;
+        }
+        
+        .error-msg.visible {
+            display: block;
+        }
+
+        .form-field.invalid input,
+        .form-field.invalid select {
+            border-color: var(--error) !important;
+        }
+
+        .form-field.invalid label {
+            color: var(--error) !important;
+        }
+
+        .form-field.invalid .icon {
+            color: var(--error) !important;
+        }
+
+        /* Alert Banner */
+        .alert-banner {
+            background-color: #ffdad6;
+            color: #410002;
+            border: 1px solid #ffb4ab;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        .alert-banner span.material-symbols-outlined {
+            color: var(--error);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Success State */
+        #success-state {
+            display: none;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(26, 115, 232, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .success-icon span { font-size: 48px; }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 64px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 640px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Plus Jakarta Sans';
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--on-surface-variant);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--surface-container-low);
+            padding: 48px 0;
+            border-top: 1px solid var(--outline-variant);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content { flex-direction: column; text-align: center; }
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: var(--on-surface-variant);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--primary); }
+
+        .copyright {
+            font-size: 14px;
+            color: var(--on-surface-variant);
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Ripple Effect */
+        .ripple-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        .hidden { display: none !important; }
+        .opacity-0 { opacity: 0; }
+
+        /* Mobile Menu Button & Drawer */
+        .mobile-menu-btn { display: none; }
+        
+        @media (max-width: 640px) {
+            nav { display: none; }
+            .nav-wrapper button.btn-primary { display: none; }
+            .mobile-menu-btn { display: block !important; }
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            display: none;
+        }
+
+        .mobile-menu-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .mobile-menu-drawer {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 280px;
+            height: 100%;
+            background: var(--surface);
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+
+        .mobile-menu-overlay.active .mobile-menu-backdrop {
+            opacity: 1;
+        }
+
+        .mobile-menu-overlay.active .mobile-menu-drawer {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .mobile-menu-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .mobile-menu-nav a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .mobile-menu-nav a.active {
+            color: var(--primary);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+<header>
+<div class="container nav-wrapper">
+<a class="logo" href="index.html" style="display: inline-flex; align-items: center;">
+    <img src="logo.png" alt="IWWA Mumbai" style="height: 48px; object-fit: contain;"/>
+</a>
+<nav>
+<a href="index.html">Home</a>
+<a class="active" href="delegate-registration.html">Delegate Registration</a>
+<a href="sponsorship.html">Sponsorship</a>
+<a href="advertisement-standee.html">Advertisement Standee</a>
+</nav>
+<button id="menu-trigger" class="mobile-menu-btn" style="background: none; border: none; cursor: pointer; padding: 8px;" aria-label="Open navigation menu">
+    <span class="material-symbols-outlined" style="font-size: 28px; color: var(--primary);">menu</span>
+</button>
+</div>
+</header>
+
+<!-- Mobile Navigation Overlay (Drawer) -->
+<div id="mobile-menu" class="mobile-menu-overlay">
+    <!-- Backdrop -->
+    <div id="mobile-menu-backdrop" class="mobile-menu-backdrop"></div>
+    <!-- Drawer Panel -->
+    <div class="mobile-menu-drawer">
+        <div class="mobile-menu-header">
+            <span class="logo" style="font-size: 24px; color: var(--primary);">Menu</span>
+            <button id="close-menu" style="background: none; border: none; cursor: pointer; padding: 8px;" aria-label="Close navigation menu">
+                <span class="material-symbols-outlined" style="font-size: 24px; color: var(--on-surface);">close</span>
+            </button>
+        </div>
+        <nav class="mobile-menu-nav">
+            <a href="index.html">Home</a>
+            <a class="active" href="delegate-registration.html">Delegate Registration</a>
+            <a href="sponsorship.html">Sponsorship</a>
+            <a href="advertisement-standee.html">Advertisement Standee</a>
+        </nav>
+
+    </div>
+</div>
+<main>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="container">
+<div class="form-section">
+<div class="card" id="registration-card">
+<!-- Top Error Summary Alert (Hidden by default) -->
+<div id="alert-banner" class="alert-banner hidden">
+<span class="material-symbols-outlined">error</span>
+<span id="alert-banner-text">Please correct the highlighted fields before submitting.</span>
+</div>
+
+<form id="delegate-form" novalidate>
+<!-- Row 1: Organisation & Email Address (Realigned in 2x2 grid) -->
+<div class="grid-2">
+<div class="form-field-wrapper">
+<div class="form-field" id="field-organization">
+<span class="material-symbols-outlined icon">corporate_fare</span>
+<input id="organization" placeholder=" " required="" type="text"/>
+<label for="organization">Organisation</label>
+</div>
+<p id="error-organization" class="error-msg">Organisation is required.</p>
+</div>
+
+<div class="form-field-wrapper">
+<div class="form-field" id="field-email">
+<span class="material-symbols-outlined icon">mail</span>
+<input id="email" placeholder=" " required="" type="email"/>
+<label for="email">Email Address</label>
+</div>
+<p id="error-email" class="error-msg">Please enter a valid email address.</p>
+</div>
+</div>
+
+<!-- Row 2: Mobile Number & Sponsor Category Dropdown -->
+<div class="grid-2">
+<div class="form-field-wrapper">
+<div class="form-field" id="field-mobile">
+<span class="material-symbols-outlined icon">call</span>
+<input id="mobile" placeholder=" " required="" type="tel"/>
+<label for="mobile">Mobile Number</label>
+</div>
+<p id="error-mobile" class="error-msg">Please enter a valid 10-digit mobile number.</p>
+</div>
+
+<div class="form-field-wrapper">
+<div class="form-field" id="field-sponsor_category">
+<span class="material-symbols-outlined icon">loyalty</span>
+<select id="sponsor_category" required="" value="">
+<option disabled="" selected="" value="">Select Category</option>
+<option value="platinum">Platinum Delegate</option>
+<option value="gold">Gold Delegate</option>
+<option value="silver">Silver Delegate</option>
+<option value="standard">Standard Delegate</option>
+</select>
+<label for="sponsor_category">Sponsor Category</label>
+<span class="material-symbols-outlined select-arrow">expand_more</span>
+</div>
+<p id="error-sponsor_category" class="error-msg">Sponsor category is required.</p>
+</div>
+</div>
+
+<div class="submit-area">
+<button id="submit-btn" class="btn-primary btn-large ripple-effect" type="submit">
+<span id="btn-text" style="display: flex; align-items: center; gap: 8px;">
+                                Register for IWWA Mumbai
+                                <span class="material-symbols-outlined">arrow_forward</span>
+</span>
+<div id="btn-spinner" class="spinner"></div>
+</button>
+</div>
+<p class="privacy-note">
+                        By registering, you agree to our <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a>.
+                    </p>
+</form>
+<div id="success-state">
+<div class="success-icon">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<h2 class="headline-lg">Registration Successful!</h2>
+<p style="color: var(--on-surface-variant); margin: 16px 0 32px;">Thank you for registering. Your details have been successfully saved in our database.</p>
+<button class="btn-primary ripple-effect" onclick="resetForm()" style="background: transparent; color: var(--primary); border: 1px solid var(--primary); box-shadow: none;">
+<span class="material-symbols-outlined">arrow_back</span>
+                        Back to site
+                    </button>
+</div>
+</div>
+<div class="stats-grid">
+<div class="stat-item">
+<div class="stat-number">500+</div>
+<div class="stat-label">Delegates</div>
+</div>
+<div class="stat-item">
+<div class="stat-number">50+</div>
+<div class="stat-label">Speakers</div>
+</div>
+<div class="stat-item">
+<div class="stat-number">20+</div>
+<div class="stat-label">Sponsors</div>
+</div>
+<div class="stat-item">
+<div class="stat-number">15+</div>
+<div class="stat-label">Countries</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer>
+<div class="container footer-content">
+<a class="logo" href="index.html" style="display: inline-flex; align-items: center;">
+    <img src="logo.png" alt="IWWA Mumbai" style="height: 40px; object-fit: contain; filter: grayscale(1) contrast(1.2); opacity: 0.8;"/>
+</a>
+<div class="footer-links">
+<a href="#">Privacy Policy</a>
+<a href="#">Terms of Service</a>
+<a href="#">Contact Us</a>
+<a href="#">About</a>
+</div>
+<p class="copyright">© 2024 IWWA Mumbai. All rights reserved.</p>
+</div>
+</footer>
+<script>
+    // =========================================================================
+    // CONFIGURATION: Set your Google Apps Script Web App URL here
+    // =========================================================================
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztRPlgagtxBh8r4pKnElD4gdH5kJamus6U9Y7rGegeF17zBolZgFgHjxjHKuVBoQ4y1Q/exec'; 
+
+    // Ripple Effect Logic
+    document.querySelectorAll('.ripple-effect').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+
+            const size = Math.max(rect.width, rect.height) * 2;
+            ripple.style.width = `${size}px`;
+            ripple.style.height = `${size}px`;
+            ripple.style.marginLeft = `-${size/2}px`;
+            ripple.style.marginTop = `-${size/2}px`;
+
+            this.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+
+    // Form inputs and DOM elements
+    const form = document.getElementById('delegate-form');
+    const successState = document.getElementById('success-state');
+    const registrationCard = document.getElementById('registration-card');
+    const alertBanner = document.getElementById('alert-banner');
+    const alertBannerText = document.getElementById('alert-banner-text');
+
+    const orgInput = document.getElementById('organization');
+    const emailInput = document.getElementById('email');
+    const mobileInput = document.getElementById('mobile');
+    const select = document.getElementById('sponsor_category');
+
+    // Real-time floating label and validation trigger for custom select
+    select.addEventListener('change', function() {
+        this.setAttribute('value', this.value);
+        validateField(this, this.value !== "", "Sponsor category is required.");
+    });
+
+    // Real-time validation listeners to clear errors on typing
+    orgInput.addEventListener('input', function() {
+        validateField(this, this.value.trim() !== "", "Organisation is required.");
+    });
+
+    emailInput.addEventListener('input', function() {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const isValid = this.value.trim() !== "" && emailRegex.test(this.value.trim());
+        const errMsg = this.value.trim() === "" ? "Email address is required." : "Please enter a valid email address.";
+        validateField(this, isValid, errMsg);
+    });
+
+    mobileInput.addEventListener('input', function() {
+        const value = this.value.trim();
+        const isValid = value !== "" && /^\d{10}$/.test(value);
+        let errMsg = "Please enter a valid 10-digit mobile number.";
+        if (value === "") {
+            errMsg = "Mobile number is required.";
+        }
+        validateField(this, isValid, errMsg);
+    });
+
+    /**
+     * Toggles error class representation and text labels below a field.
+     */
+    function validateField(inputEl, condition, errorMessage) {
+        const fieldWrapper = document.getElementById(`field-${inputEl.id}`);
+        const errorEl = document.getElementById(`error-${inputEl.id}`);
+        
+        if (!condition) {
+            fieldWrapper.classList.add('invalid');
+            errorEl.textContent = errorMessage;
+            errorEl.classList.add('visible');
+            return false;
+        } else {
+            fieldWrapper.classList.remove('invalid');
+            errorEl.classList.remove('visible');
+            return true;
+        }
+    }
+
+    // Form Submission
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // 1. Run all validations
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        
+        const isOrgValid = validateField(orgInput, orgInput.value.trim() !== "", "Organisation is required.");
+        
+        const isEmailValid = validateField(
+            emailInput, 
+            emailInput.value.trim() !== "" && emailRegex.test(emailInput.value.trim()), 
+            emailInput.value.trim() === "" ? "Email address is required." : "Please enter a valid email address."
+        );
+        
+        const isMobileValid = validateField(
+            mobileInput,
+            /^\d{10}$/.test(mobileInput.value.trim()),
+            "Please enter a valid 10-digit mobile number."
+        );
+        
+        const isCategoryValid = validateField(
+            select,
+            select.value !== "",
+            "Sponsor category is required."
+        );
+
+        const isFormValid = isOrgValid && isEmailValid && isMobileValid && isCategoryValid;
+
+        if (!isFormValid) {
+            alertBannerText.textContent = "Please correct the highlighted fields before submitting.";
+            alertBanner.classList.remove('hidden');
+            registrationCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            return;
+        }
+
+        // Hide alert banner if previously shown
+        alertBanner.classList.add('hidden');
+
+        // Check if Apps Script Web App URL is configured
+        if (SCRIPT_URL === 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE' || SCRIPT_URL === '') {
+            alertBannerText.textContent = "Configuration Error: SCRIPT_URL has not been set. Please configure the Google Apps Script Web App URL.";
+            alertBanner.classList.remove('hidden');
+            registrationCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            return;
+        }
+
+        // 2. Set loading state on submit button
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnSpinner = document.getElementById('btn-spinner');
+
+        submitBtn.disabled = true;
+        btnText.classList.add('hidden');
+        btnSpinner.style.display = 'block';
+
+        // 3. Send data to Google Apps Script via GET request (bypasses all CORS issues)
+        try {
+            const params = new URLSearchParams({
+                formType: 'delegate',
+                organisation: orgInput.value.trim(),
+                email: emailInput.value.trim(),
+                mobile: mobileInput.value.trim(),
+                sponsorCategory: select.value
+            });
+
+            const submitUrl = SCRIPT_URL + '?' + params.toString();
+
+            // Use a hidden iframe to make the GET request
+            let iframe = document.getElementById('hidden-iframe');
+            if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.id = 'hidden-iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+            }
+            iframe.src = submitUrl;
+
+            // Show success after allowing time for the request to complete
+            setTimeout(() => {
+                // Submit transition animation to success state
+                form.style.transition = 'opacity 0.4s ease';
+                form.style.opacity = '0';
+                
+                setTimeout(() => {
+                    form.classList.add('hidden');
+                    successState.style.display = 'block';
+                    successState.style.opacity = '0';
+                    successState.style.transform = 'translateY(10px)';
+                    
+                    requestAnimationFrame(() => {
+                        successState.style.transition = 'all 0.5s ease';
+                        successState.style.opacity = '1';
+                        successState.style.transform = 'translateY(0)';
+                    });
+                    
+                    registrationCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 400);
+
+                // Remove loading state on submit button
+                submitBtn.disabled = false;
+                btnText.classList.remove('hidden');
+                btnSpinner.style.display = 'none';
+            }, 2000);
+        } catch (err) {
+            console.error("Submission error:", err);
+            alertBannerText.textContent = err.message || "Failed to submit registration. Please verify your connection and try again.";
+            alertBanner.classList.remove('hidden');
+            registrationCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Remove loading state on submit button
+            submitBtn.disabled = false;
+            btnText.classList.remove('hidden');
+            btnSpinner.style.display = 'none';
+        }
+    });
+
+    function resetForm() {
+        successState.style.opacity = '0';
+        setTimeout(() => {
+            successState.style.display = 'none';
+            form.classList.remove('hidden');
+            form.style.opacity = '1';
+            form.reset();
+            
+            // Reset custom elements states
+            select.setAttribute('value', '');
+            
+            // Remove validation indicators
+            const fields = ['organization', 'email', 'mobile', 'sponsor_category'];
+            fields.forEach(id => {
+                const wrapper = document.getElementById(`field-${id}`);
+                const error = document.getElementById(`error-${id}`);
+                wrapper.classList.remove('invalid');
+                error.classList.remove('visible');
+            });
+            alertBanner.classList.add('hidden');
+        }, 300);
+    }
+
+    // Mobile Menu Drawer Logic
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuBackdrop = document.getElementById('mobile-menu-backdrop');
+    const menuTrigger = document.getElementById('menu-trigger');
+    const closeMenuBtn = document.getElementById('close-menu');
+
+    function openMenu() {
+        mobileMenu.classList.add('active');
+    }
+
+    function closeMenu() {
+        mobileMenu.classList.remove('active');
+    }
+
+    menuTrigger.addEventListener('click', openMenu);
+    closeMenuBtn.addEventListener('click', closeMenu);
+    menuBackdrop.addEventListener('click', closeMenu);
+</script>
+</body></html>
