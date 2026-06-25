@@ -355,20 +355,76 @@
                 transform: translateY(-10px);
             }
         }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Error States styling */
+        .error-msg {
+            color: #ba1a1a;
+            font-size: 12px;
+            margin-top: 4px;
+            font-weight: 500;
+            display: none;
+            text-align: left;
+            animation: slideUp 0.3s ease-out;
+            padding-left: 4px;
+        }
+        
+        .error-msg.visible {
+            display: block;
+        }
+
+        .form-input.invalid,
+        input.form-input.invalid,
+        select.form-input.invalid {
+            border-color: #ba1a1a !important;
+        }
+
+        .form-group.invalid label {
+            color: #ba1a1a !important;
+        }
+
+        /* Alert Banner */
+        .alert-banner {
+            background-color: #ffdad6;
+            color: #410002;
+            border: 1px solid #ffb4ab;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        .alert-banner span.material-symbols-outlined {
+            color: #ba1a1a;
+        }
 
     </style>
 </head>
-<body class="bg-background text-on-surface overflow-x-hidden">
+<body class="bg-background text-on-surface overflow-x-hidden flex flex-col min-h-screen">
     <header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-3 flex justify-between items-center w-full">
-            <div class="flex items-center gap-2 cursor-pointer" onclick="location.href='index.html'">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="location.href='home.html'">
                 <img src="logo.png" alt="IWWA Mumbai" class="h-12 object-contain"/>
             </div>
             <nav class="relative hidden md:flex items-center gap-8">
-                <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="index.html">Home</a>
+                <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="home.html">Home</a>
                 <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="delegate-registration.html">Delegate Registration</a>
                 <a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 font-bold font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="sponsorship.html">Sponsorship</a>
                 <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="advertisement-standee.html">Advertisement Standee</a>
+                <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="technical-paper.html">Technical Paper And Submissions</a>
             </nav>
             <button id="menu-trigger" class="md:hidden p-2 text-primary" aria-label="Open navigation menu">
                 <span class="material-symbols-outlined text-[28px] pointer-events-none">menu</span>
@@ -389,77 +445,160 @@
                 </button>
             </div>
             <nav class="flex flex-col gap-6">
-                <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="index.html">Home</a>
+                <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="home.html">Home</a>
                 <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="delegate-registration.html">Delegate Registration</a>
                 <a class="text-primary font-bold font-label-lg text-lg hover:text-primary-container" href="sponsorship.html">Sponsorship</a>
                 <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="advertisement-standee.html">Advertisement Standee</a>
+                <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="technical-paper.html">Technical Paper And Submissions</a>
             </nav>
         </div>
     </div>
 
     <!-- Main Container -->
-    <main class="main-container">
+    <main class="main-container flex-grow">
         <!-- Left Section: Tiers -->
         <div class="space-y-gutter">
-            <div class="glass-card">
-                <h1 class="headline text-headline-lg">IWWA National Seminar</h1>
-                <p class="text-primary font-bold mb-6 text-headline-md">Urban Water – Issues &amp; Solutions</p>
-                <p class="text-on-surface-variant font-body-md mb-8">Join the national conversation on sustainable water management. Partner with us to showcase your solutions to key decision-makers, industry experts, and government officials.</p>
-                <h2 class="headline text-headline-md mb-4">Sponsorship Packages</h2>
-                <!-- Golden Tier -->
-                <div class="sponsor-tier-card golden">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="bg-[#ffd700] text-[#5c4a00] px-4 py-1 rounded-full text-label-md font-bold">GOLDEN SPONSOR</span>
-                        <span class="text-headline-md font-extrabold">₹1,00,000</span>
-                    </div>
-                    <ul class="space-y-2 text-label-lg">
-                        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-[#5c4a00]">check_circle</span> 10x10 Premium Display Stall</li>
-                        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-[#5c4a00]">check_circle</span> 5 Complimentary Delegate Passes</li>
-                    </ul>
-                    <p class="mt-4 text-label-md opacity-70">+ 18% GST applicable</p>
+            <div class="glass-card" style="padding: 40px 32px; animation: slideUp 0.6s ease-out;">
+                <h1 class="headline text-headline-lg" style="color: var(--primary); font-weight: 800; font-size: 36px; margin-bottom: 12px; font-family: 'Plus Jakarta Sans', sans-serif;">Sponsorship</h1>
+                <p class="text-on-surface-variant font-body-md" style="font-size: 16px; line-height: 1.6; margin-bottom: 32px;">
+                    Sponsorship opportunities are available to all leading industrial houses, vendors, and infrastructure operators and we appeal all of them to support this unique event.
+                </p>
+                
+                <!-- Premium Styled Table -->
+                <div style="overflow-x: auto; border-radius: 12px; border: 1px solid var(--outline-variant); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left; font-family: 'Inter', sans-serif;">
+                        <thead>
+                            <tr style="background: var(--primary); color: white; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;">
+                                <th style="padding: 16px 20px; font-weight: 700; border-bottom: 2px solid rgba(0,0,0,0.1);">Tier</th>
+                                <th style="padding: 16px 20px; font-weight: 700; border-bottom: 2px solid rgba(0,0,0,0.1);">Amount</th>
+                                <th style="padding: 16px 20px; font-weight: 700; border-bottom: 2px solid rgba(0,0,0,0.1);">Benefits</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Golden Row -->
+                            <tr style="background: #005bc0; color: white;">
+                                <td style="padding: 20px; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; border-bottom: 1px solid rgba(255,255,255,0.1);">Golden</td>
+                                <td style="padding: 20px; font-family: monospace; font-size: 15px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                    Rs. 1,00,000<br/>
+                                    <span style="font-size: 12px; opacity: 0.8; font-family: 'Inter', sans-serif;">Plus 18% GST</span>
+                                </td>
+                                <td style="padding: 20px; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.1); line-height: 1.5;">
+                                    <strong>2</strong> Standees &amp;<br/>
+                                    <strong>4</strong> Delegates Free
+                                </td>
+                            </tr>
+                            <!-- Silver Row -->
+                            <tr style="background: #d3e1f6; color: #001a41;">
+                                <td style="padding: 20px; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px;">Silver</td>
+                                <td style="padding: 20px; font-family: monospace; font-size: 15px; font-weight: 600;">
+                                    Rs. 50,000<br/>
+                                    <span style="font-size: 12px; opacity: 0.8; font-family: 'Inter', sans-serif;">Plus 18% GST</span>
+                                </td>
+                                <td style="padding: 20px; font-size: 14px; line-height: 1.5;">
+                                    <strong>1</strong> Standee &amp;<br/>
+                                    <strong>3</strong> Delegates Free
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <!-- Silver Tier -->
-                <div class="sponsor-tier-card silver">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="bg-[#c0c0c0] text-[#2f2f2f] px-4 py-1 rounded-full text-label-md font-bold">SILVER SPONSOR</span>
-                        <span class="text-headline-md font-extrabold">₹50,000</span>
+            </div>
+
+            <!-- Left Column Add-on: Payment QR and Instructions -->
+            <div class="glass-card flex flex-col gap-6 text-center" style="animation: slideUp 0.6s ease-out 0.1s both; padding: 40px 24px; margin-top: 24px;">
+                <h2 class="headline text-headline-md" style="color: #005bbf; font-weight: 700; margin-bottom: 8px;">SCAN & PAY</h2>
+                <p style="color: #414754; font-size: 15px; line-height: 1.6; margin-bottom: 16px;">
+                    Scan the QR code using GPay, PhonePe, Paytm, BHIM, or any other UPI app to pay the sponsorship fee.
+                </p>
+                <div style="border: 2px dashed #c1c6d6; border-radius: 16px; padding: 16px; background: white; max-width: 320px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                    <img src="payment-qr.png" alt="IDBI Bank UPI QR Code" style="width: 100%; height: auto; display: block; border-radius: 8px;"/>
+                </div>
+                <div style="background: #f3f3f4; padding: 16px; border-radius: 12px; text-align: left; font-size: 13px; color: #414754; border: 1px solid #c1c6d6; margin-top: 16px;">
+                    <div style="margin-bottom: 8px; font-weight: 600; color: #1a1c1c;">UPI / Bank Details:</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; gap: 12px;">
+                        <span>UPI ID:</span>
+                        <div style="display: flex; align-items: center; gap: 6px; max-width: 80%;">
+                            <span style="font-weight: 600; font-family: monospace; color: #005bbf; word-break: break-all; text-align: right;">indianwaterworksassociationmulund@idbi</span>
+                            <button type="button" onclick="copyText('indianwaterworksassociationmulund@idbi', this)" style="background: none; border: none; padding: 2px; color: #005bbf; cursor: pointer; display: inline-flex; align-items: center;" title="Copy UPI ID">
+                                <span class="material-symbols-outlined" style="font-size: 16px;">content_copy</span>
+                            </button>
+                        </div>
                     </div>
-                    <ul class="space-y-2 text-label-lg">
-                        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-[#2f2f2f]">check_circle</span> 8x8 Display Stall</li>
-                        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-[#2f2f2f]">check_circle</span> 2 Complimentary Delegate Passes</li>
-                        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-[#2f2f2f]">check_circle</span> Logo on Venue Branding Collaterals</li>
-                    </ul>
-                    <p class="mt-4 text-label-md opacity-70">+ 18% GST applicable</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+                        <span>Account No:</span>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <span style="font-weight: 600; font-family: monospace; color: #1a1c1c;">52410010008770</span>
+                            <button type="button" onclick="copyText('52410010008770', this)" style="background: none; border: none; padding: 2px; color: #1a1c1c; cursor: pointer; display: inline-flex; align-items: center;" title="Copy Account Number">
+                                <span class="material-symbols-outlined" style="font-size: 16px;">content_copy</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Right Section: Form -->
-        <div class="glass-card">
+        <div class="glass-card" id="registration-card">
+            <!-- Top Error Summary Alert (Hidden by default) -->
+            <div id="alert-banner" class="alert-banner hidden">
+                <span class="material-symbols-outlined">error</span>
+                <span id="alert-banner-text">Please correct the highlighted fields before submitting.</span>
+            </div>
+
             <!-- Form Block -->
-            <form id="sponsorForm">
+            <form id="sponsorForm" novalidate>
                 <h2 class="headline text-headline-lg mb-8">Sponsor Registration Form</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-gutter">
-                    <div class="form-group col-span-2">
+                    <div class="form-group col-span-2" id="field-wrapper-org">
                         <label class="form-label">Organisation</label>
                         <input id="orgInput" class="form-input" placeholder="Enter your full company name" required="" type="text">
+                        <p id="error-org" class="error-msg">Organisation name is required.</p>
                     </div>
-                    <div class="form-group col-span-2">
+                    <div class="form-group col-span-2" id="field-wrapper-email">
                         <label class="form-label">Email</label>
                         <input id="emailInput" class="form-input" placeholder="corporate@organization.com" required="" type="email">
+                        <p id="error-email" class="error-msg">Please enter a valid email address.</p>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="field-wrapper-mobile">
                         <label class="form-label">Mobile</label>
                         <input id="mobileInput" class="form-input" placeholder="10-digit mobile number" required="" type="tel" pattern="[0-9]{10}">
+                        <p id="error-mobile" class="error-msg">Please enter a valid 10-digit mobile number.</p>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="field-wrapper-category">
                         <label class="form-label">Sponsor Category</label>
                         <select class="form-input form-select" id="categorySelect" required="">
                             <option disabled="" selected="" value="">Select a category</option>
-                            <option value="golden">Golden Sponsor (₹1,0,0,00)</option>
+                            <option value="golden">Golden Sponsor (₹1,00,000)</option>
                             <option value="silver">Silver Sponsor (₹50,000)</option>
                         </select>
+                        <p id="error-category" class="error-msg">Please select a sponsor category.</p>
                     </div>
+                </div>
+
+                <!-- Dynamic Calculated Fee Box -->
+                <div id="fee-box" class="pricing-summary" style="display: none; margin-bottom: 24px;">
+                    <div class="pricing-row">
+                        <span style="font-weight: 500; color: #525f71;">Base Fee:</span>
+                        <span id="base-fee-val" style="font-weight: 600; color: #1a1c1c;">₹0.00</span>
+                    </div>
+                    <div class="pricing-row">
+                        <span style="font-weight: 500; color: #525f71;">GST (18%):</span>
+                        <span id="gst-val" style="font-weight: 600; color: #1a1c1c;">₹0.00</span>
+                    </div>
+                    <div class="pricing-total" style="border-top: 1px solid rgba(0,0,0,0.1); padding-top: 16px; margin-top: 8px; font-weight: 800; font-size: 20px; color: #005bbf; display: flex; justify-content: space-between;">
+                        <span>Total Fee (to pay):</span>
+                        <span id="total-fee-val">₹0.00</span>
+                    </div>
+                </div>
+
+                <!-- File Upload for Payment Receipt -->
+                <div class="form-group col-span-2" id="field-wrapper-receipt" style="margin-top: 24px;">
+                    <label class="form-label" style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; color: #525f71;">Upload Payment Receipt (PDF or Image)</label>
+                    <div style="position: relative;">
+                        <span class="material-symbols-outlined" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #414754;">upload_file</span>
+                        <input id="receipt" type="file" accept="application/pdf,image/*" required class="form-input" style="padding-left: 52px; background: transparent;" />
+                    </div>
+                    <p id="error-receipt" class="error-msg">Please upload your payment receipt.</p>
                 </div>
 
                 <!-- Submit Button -->
@@ -502,25 +641,162 @@
 
     <script>
         // Google Apps Script Web App URL (Central Router URL)
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztRPlgagtxBh8r4pKnElD4gdH5kJamus6U9Y7rGegeF17zBolZgFgHjxjHKuVBoQ4y1Q/exec'; // Replace with deployed Web App URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzghAHPSVuaqoUvm-xccU1xCQ9mxsa-1vRtZ6sHxML4ftNATWG9USPe1CrXU47RxHcjCg/exec'; 
 
         const form = document.getElementById('sponsorForm');
         const successState = document.getElementById('success-state');
+        const alertBanner = document.getElementById('alert-banner');
+        const alertBannerText = document.getElementById('alert-banner-text');
+        const registrationCard = document.getElementById('registration-card');
+
         const orgInput = document.getElementById('orgInput');
         const emailInput = document.getElementById('emailInput');
         const mobileInput = document.getElementById('mobileInput');
         const select = document.getElementById('categorySelect');
+        const receiptInput = document.getElementById('receipt');
+
+        const feeBox = document.getElementById('fee-box');
+        const baseFeeVal = document.getElementById('base-fee-val');
+        const gstVal = document.getElementById('gst-val');
+        const totalFeeVal = document.getElementById('total-fee-val');
+
         const submitBtn = document.getElementById('submit-btn');
         const btnText = document.getElementById('btn-text');
         const btnSpinner = document.getElementById('btn-spinner');
 
+        let feePaidText = "";
+
+        // Format currency helper
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-IN', {
+                style: 'currency',
+                currency: 'INR',
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        // Dropdown selection change to show pricing summary
+        select.addEventListener('change', function() {
+            const val = this.value;
+            let baseFee = 0;
+            let gst = 0;
+            let total = 0;
+
+            if (val === 'golden') {
+                baseFee = 100000;
+                gst = 18000;
+                total = 118000;
+            } else if (val === 'silver') {
+                baseFee = 50000;
+                gst = 9000;
+                total = 59000;
+            }
+
+            if (baseFee > 0) {
+                baseFeeVal.textContent = formatCurrency(baseFee);
+                gstVal.textContent = formatCurrency(gst);
+                totalFeeVal.textContent = formatCurrency(total);
+                feePaidText = `${formatCurrency(baseFee)} + ${formatCurrency(gst)} (18% GST) = ${formatCurrency(total)}`;
+                feeBox.style.display = 'block';
+            } else {
+                feeBox.style.display = 'none';
+                feePaidText = "";
+            }
+
+            validateField(this, this.value !== "", "Please select a sponsor category.");
+        });
+
+        // Real-time Validations
+        orgInput.addEventListener('input', function() {
+            validateField(this, this.value.trim() !== "", "Organisation name is required.");
+        });
+
+        emailInput.addEventListener('input', function() {
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const isValid = this.value.trim() !== "" && emailRegex.test(this.value.trim());
+            const errMsg = this.value.trim() === "" ? "Email address is required." : "Please enter a valid email address.";
+            validateField(this, isValid, errMsg);
+        });
+
+        mobileInput.addEventListener('input', function() {
+            const value = this.value.trim();
+            const isValid = value !== "" && /^\d{10}$/.test(value);
+            let errMsg = "Please enter a valid 10-digit mobile number.";
+            if (value === "") {
+                errMsg = "Mobile number is required.";
+            }
+            validateField(this, isValid, errMsg);
+        });
+
+        receiptInput.addEventListener('change', function() {
+            validateField(this, this.files.length > 0, "Payment receipt file is required.");
+        });
+
+        function validateField(inputEl, condition, errorMessage) {
+            const fieldWrapper = document.getElementById(`field-wrapper-${inputEl.id.replace('Input', '').replace('Select', '')}`);
+            const errorEl = document.getElementById(`error-${inputEl.id.replace('Input', '').replace('Select', '')}`);
+            if (!fieldWrapper || !errorEl) return condition;
+            
+            if (!condition) {
+                fieldWrapper.classList.add('invalid');
+                inputEl.classList.add('invalid');
+                errorEl.textContent = errorMessage;
+                errorEl.classList.add('visible');
+                return false;
+            } else {
+                fieldWrapper.classList.remove('invalid');
+                inputEl.classList.remove('invalid');
+                errorEl.classList.remove('visible');
+                return true;
+            }
+        }
+
+        // Convert file to base64 helper
+        async function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
 
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
 
+            // Run validations
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            const isOrgValid = validateField(orgInput, orgInput.value.trim() !== "", "Organisation name is required.");
+            const isEmailValid = validateField(
+                emailInput,
+                emailInput.value.trim() !== "" && emailRegex.test(emailInput.value.trim()),
+                emailInput.value.trim() === "" ? "Email address is required." : "Please enter a valid email address."
+            );
+            const isMobileValid = validateField(
+                mobileInput,
+                /^\d{10}$/.test(mobileInput.value.trim()),
+                "Please enter a valid 10-digit mobile number."
+            );
+            const isCategoryValid = validateField(select, select.value !== "", "Please select a sponsor category.");
+            const isReceiptValid = validateField(receiptInput, receiptInput.files.length > 0, "Payment receipt file is required.");
+
+            const isFormValid = isOrgValid && isEmailValid && isMobileValid && isCategoryValid && isReceiptValid;
+
+            if (!isFormValid) {
+                alertBannerText.textContent = "Please correct the highlighted fields before submitting.";
+                alertBanner.classList.remove('hidden');
+                registrationCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                return;
+            }
+
+            alertBanner.classList.add('hidden');
+
             // Check if Apps Script Web App URL is configured
             if (SCRIPT_URL === 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE' || SCRIPT_URL === '') {
-                alert("Configuration Error: SCRIPT_URL has not been set. Please configure the Google Apps Script Web App URL at the top of the script.");
+                alertBannerText.textContent = "Configuration Error: SCRIPT_URL has not been set. Please configure the Google Apps Script Web App URL.";
+                alertBanner.classList.remove('hidden');
+                registrationCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 return;
             }
 
@@ -529,29 +805,53 @@
             btnText.classList.add('hidden');
             btnSpinner.style.display = 'block';
 
+            // Process receipt file
+            let base64Data = "";
+            let fileName = "";
+            const file = receiptInput.files[0];
+
+            if (file.size > 4 * 1024 * 1024) {
+                alertBannerText.textContent = "Receipt file is too large. Please upload a file smaller than 4MB.";
+                alertBanner.classList.remove('hidden');
+                registrationCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                resetSubmitButton();
+                return;
+            }
+
             try {
-                const params = new URLSearchParams({
+                base64Data = await getBase64(file);
+                fileName = file.name;
+            } catch (fileErr) {
+                alertBannerText.textContent = "Failed to process receipt file. Please select a valid file and try again.";
+                alertBanner.classList.remove('hidden');
+                registrationCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                resetSubmitButton();
+                return;
+            }
+
+            try {
+                const payload = {
                     formType: 'sponsor',
                     organisation: orgInput.value.trim(),
                     email: emailInput.value.trim(),
                     mobile: mobileInput.value.trim(),
-                    sponsorCategory: select.value
+                    sponsorCategory: select.options[select.selectedIndex].text,
+                    feePaid: feePaidText,
+                    fileName: fileName,
+                    fileData: base64Data
+                };
+
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload),
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8'
+                    }
                 });
 
-                const submitUrl = SCRIPT_URL + '?' + params.toString();
+                const result = await response.json();
 
-                // Use a hidden iframe to make the GET request
-                let iframe = document.getElementById('hidden-iframe');
-                if (!iframe) {
-                    iframe = document.createElement('iframe');
-                    iframe.id = 'hidden-iframe';
-                    iframe.style.display = 'none';
-                    document.body.appendChild(iframe);
-                }
-                iframe.src = submitUrl;
-
-                // Show success after allowing time for the request to complete
-                setTimeout(() => {
+                if (result.success) {
                     // Transition to success state
                     form.style.transition = 'opacity 0.4s ease';
                     form.style.opacity = '0';
@@ -567,13 +867,20 @@
                             successState.style.opacity = '1';
                             successState.style.transform = 'translateY(0)';
                         });
+                        
+                        registrationCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }, 400);
-
-                    resetSubmitButton();
-                }, 2000);
+                } else {
+                    alertBannerText.textContent = result.message || "Failed to submit registration. Please try again.";
+                    alertBanner.classList.remove('hidden');
+                    registrationCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                resetSubmitButton();
             } catch (error) {
                 console.error("Error submitting form:", error);
-                alert("An error occurred during submission. Please try again.");
+                alertBannerText.textContent = "Failed to submit registration. Please verify your connection or QR code receipt, and try again.";
+                alertBanner.classList.remove('hidden');
+                registrationCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 resetSubmitButton();
             }
         });
@@ -586,7 +893,21 @@
 
         function resetForm() {
             form.reset();
+            feeBox.style.display = 'none';
+            feePaidText = "";
+            alertBanner.classList.add('hidden');
             
+            // Clear any invalid states
+            const fields = ['org', 'email', 'mobile', 'category', 'receipt'];
+            fields.forEach(f => {
+                const wrapper = document.getElementById(`field-wrapper-${f}`);
+                const input = document.getElementById(f === 'receipt' ? 'receipt' : f + (f === 'category' ? 'Select' : 'Input'));
+                const error = document.getElementById(`error-${f}`);
+                if (wrapper) wrapper.classList.remove('invalid');
+                if (input) input.classList.remove('invalid');
+                if (error) error.classList.remove('visible');
+            });
+
             successState.style.transition = 'opacity 0.4s ease';
             successState.style.opacity = '0';
             
@@ -624,7 +945,7 @@
         // Smooth Page transitions
         document.querySelectorAll('a').forEach(link => {
             const href = link.getAttribute('href');
-            if (href && (href.endsWith('.html') || href === 'index.html' || href.startsWith('delegate') || href.startsWith('sponsor') || href.startsWith('advertisement'))) {
+            if (href && (href.endsWith('.html') || href === 'home.html' || href.startsWith('delegate') || href.startsWith('sponsor') || href.startsWith('advertisement'))) {
                 link.addEventListener('click', function(e) {
                     if (link.getAttribute('target') === '_blank' || e.metaKey || e.ctrlKey) return;
                     e.preventDefault();
@@ -655,6 +976,19 @@
                 }, 600);
             });
         });
+
+        // Copy to clipboard helper
+        function copyText(text, btnEl) {
+            navigator.clipboard.writeText(text).then(() => {
+                const icon = btnEl.querySelector('.material-symbols-outlined');
+                icon.textContent = 'check';
+                icon.style.color = '#2e7d32'; // Green check
+                setTimeout(() => {
+                    icon.textContent = 'content_copy';
+                    icon.style.color = '';
+                }, 1500);
+            });
+        }
     </script>
 </body>
 </html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Technical Paper and Submissions - IWWA Mumbai</title>
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#414754",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#f0f1f1",
+                    "surface": "#f9f9f9",
+                    "surface-container-high": "#e8e8e8",
+                    "on-secondary-fixed": "#0f1c2c",
+                    "outline-variant": "#c1c6d6",
+                    "tertiary": "#5c5e60",
+                    "secondary-fixed-dim": "#bac8dc",
+                    "on-primary-fixed": "#001a41",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f3f3f4",
+                    "surface-container": "#eeeeee",
+                    "secondary-fixed": "#d6e4f9",
+                    "surface-dim": "#dadada",
+                    "outline": "#727785",
+                    "primary": "#005bbf",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#004493",
+                    "on-background": "#1a1c1c",
+                    "surface-tint": "#005bc0",
+                    "on-secondary-fixed-variant": "#3a4859",
+                    "surface-container-highest": "#e2e2e2",
+                    "background": "#f9f9f9",
+                    "on-primary-container": "#ffffff",
+                    "tertiary-fixed-dim": "#c5c7c8",
+                    "secondary": "#525f71",
+                    "surface-variant": "#e2e2e2",
+                    "on-secondary-container": "#566475",
+                    "primary-container": "#1a73e8",
+                    "inverse-primary": "#adc7ff",
+                    "on-tertiary-fixed-variant": "#454748",
+                    "on-tertiary-container": "#ffffff",
+                    "secondary-container": "#d3e1f6",
+                    "primary-fixed-dim": "#adc7ff",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#e1e3e4",
+                    "on-tertiary-fixed": "#191c1d",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#d8e2ff",
+                    "surface-bright": "#f9f9f9",
+                    "tertiary-container": "#757778",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2f3131"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "margin-desktop": "48px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        body {
+            background-color: #f9f9f9;
+            color: #1a1c1c;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        /* Main Content Layout */
+        .main-container {
+            padding-top: 148px; /* 100px header offset + 48px padding */
+            padding-bottom: 48px;
+            padding-left: 48px;
+            padding-right: 48px;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                padding-top: 96px;
+                padding-bottom: 32px;
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+        }
+
+        .submission-card {
+            background: white;
+            border-radius: 2rem;
+            padding: 48px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+        }
+        .submission-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Ripple Effect */
+        .ripple-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-animation 600ms linear;
+            pointer-events: none;
+        }
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Shimmer button animation */
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 30%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(25deg);
+            animation: shimmer 3.5s infinite ease-in-out;
+        }
+        @keyframes shimmer {
+            0% { left: -60%; }
+            15% { left: 140%; }
+            100% { left: 140%; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c1c6d6;
+            border-radius: 5px;
+            border: 2px solid #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a1a6b6;
+        }
+
+        /* Page Transition Animations */
+        body {
+            animation: fadeInPage 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            opacity: 0;
+        }
+        body.page-exit {
+            animation: fadeOutPage 0.3s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+        }
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeOutPage {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface overflow-x-hidden flex flex-col min-h-screen">
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-3 flex justify-between items-center w-full">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="location.href='home.html'">
+                <img src="logo.png" alt="IWWA Mumbai" class="h-12 object-contain"/>
+            </div>
+            <nav class="relative hidden md:flex items-center gap-8">
+                <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="home.html">Home</a>
+                <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="delegate-registration.html">Delegate Registration</a>
+                <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="sponsorship.html">Sponsorship</a>
+                <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="advertisement-standee.html">Advertisement Standee</a>
+                <a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 font-bold font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="technical-paper.html">Technical Paper And Submissions</a>
+            </nav>
+            <button id="menu-trigger" class="md:hidden p-2 text-primary" aria-label="Open navigation menu">
+                <span class="material-symbols-outlined text-[28px] pointer-events-none">menu</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay (Drawer) -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+        <!-- Backdrop -->
+        <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+        <!-- Drawer Panel -->
+        <div class="absolute right-0 top-0 h-full w-64 bg-white shadow-2xl flex flex-col p-6 z-50">
+            <div class="flex justify-between items-center mb-8">
+                <span class="font-display-lg text-headline-lg font-bold text-primary">Menu</span>
+                <button id="close-menu" class="p-2 text-on-surface hover:bg-surface-container-low rounded-full" aria-label="Close navigation menu">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <nav class="flex flex-col gap-6">
+                <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="home.html">Home</a>
+                <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="delegate-registration.html">Delegate Registration</a>
+                <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="sponsorship.html">Sponsorship</a>
+                <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="advertisement-standee.html">Advertisement Standee</a>
+                <a class="text-primary font-bold font-label-lg text-lg hover:text-primary-container" href="technical-paper.html">Technical Paper And Submissions</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="main-container flex-grow">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+            <!-- Left Side: Platform Screenshot -->
+            <div class="lg:col-span-7 flex flex-col justify-center">
+                <div class="relative rounded-2xl overflow-hidden shadow-xl border border-outline-variant/35 bg-white p-2">
+                    <img src="platform-screenshot.png" alt="Technical Paper Submission Platform" class="w-full h-auto object-cover rounded-xl"/>
+                </div>
+            </div>
+
+            <!-- Right Side: Submission Card -->
+            <div class="lg:col-span-5 flex flex-col justify-center">
+                <div class="relative w-full">
+                    <div class="submission-card bg-white border border-outline-variant/30 rounded-lg p-8 md:p-10 shadow-sm flex flex-col items-center text-center gap-6" style="background: linear-gradient(135deg, #ffffff 0%, #f3f3f4 100%);">
+                        <h2 class="font-headline-lg text-headline-md md:text-headline-lg text-on-surface mb-2 font-bold tracking-tight">Technical Paper and Submissions</h2>
+                        <p class="font-medium text-secondary text-label-lg">Please visit</p>
+                        <a href="https://selectmyarticle.com/" target="_blank" class="bg-primary text-on-primary font-label-lg text-label-lg px-8 py-4 rounded-full hover:bg-primary-container active:scale-95 transition-all duration-200 ripple-effect shadow-sm inline-flex items-center gap-2 shimmer-btn">
+                            Visit Platform <span class="material-symbols-outlined" style="font-size: 20px;">open_in_new</span>
+                        </a>
+                        <p class="font-body-md text-on-surface-variant max-w-[280px]">And select <span class="font-bold text-on-surface">“URBAN WATER – ISSUES &amp; SOLUTIONS”</span> platform</p>
+                    </div>
+                    <!-- Decorative background element -->
+                    <div class="absolute -z-10 -top-4 -right-4 w-full h-full bg-primary/5 rounded-lg"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-8 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-container-low border-t border-outline-variant/20">
+        <div class="flex flex-col gap-2 items-center md:items-start">
+            <span class="font-headline-md text-headline-md font-semibold text-secondary">IWWA Mumbai</span>
+            <p class="text-on-surface-variant font-body-md text-body-md">© 2026 IWWA Mumbai. All rights reserved.</p>
+        </div>
+        <nav class="flex flex-wrap justify-center gap-6">
+            <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+            <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+            <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Contact Us</a>
+            <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">About</a>
+        </nav>
+    </footer>
+
+    <!-- Interactive Layer for page transition and ripples -->
+    <script>
+        // Smooth Page transitions
+        document.querySelectorAll('a').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && (href.endsWith('.html') || href === 'home.html' || href.startsWith('delegate') || href.startsWith('sponsor') || href.startsWith('advertisement'))) {
+                link.addEventListener('click', function(e) {
+                    if (link.getAttribute('target') === '_blank' || e.metaKey || e.ctrlKey) return;
+                    e.preventDefault();
+                    document.body.classList.add('page-exit');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 300);
+                });
+            }
+        });
+
+        // Mobile Menu Drawer Logic
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuBackdrop = document.getElementById('mobile-menu-backdrop');
+        const menuTrigger = document.getElementById('menu-trigger');
+        const closeMenuBtn = document.getElementById('close-menu');
+
+        function openMenu() {
+            mobileMenu.classList.remove('translate-x-full');
+            menuBackdrop.classList.remove('pointer-events-none', 'opacity-0');
+            menuBackdrop.classList.add('opacity-100');
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.add('translate-x-full');
+            menuBackdrop.classList.remove('opacity-100');
+            menuBackdrop.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        menuTrigger.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        menuBackdrop.addEventListener('click', closeMenu);
+
+        // Ripple Effect Logic
+        document.querySelectorAll('.ripple-effect').forEach(button => {
+            button.addEventListener('click', function(e) {
+                let x = e.clientX - e.target.getBoundingClientRect().left;
+                let y = e.clientY - e.target.getBoundingClientRect().top;
+
+                let ripples = document.createElement('span');
+                ripples.classList.add('ripple');
+                ripples.style.left = x + 'px';
+                ripples.style.top = y + 'px';
+                this.appendChild(ripples);
+
+                setTimeout(() => {
+                    ripples.remove();
+                }, 600);
+            });
+        });
+    </script>
+</body>
+</html>

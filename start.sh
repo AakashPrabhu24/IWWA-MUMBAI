@@ -34,7 +34,7 @@ elif command -v npx &>/dev/null; then
     npx http-server -p $PORT
 else
     # Check for local Node share binary from Zed if available
-    ZED_NODE="/home/vivin/.local/share/zed/node/node-v24.11.0-linux-x64/bin/node"
+    ZED_NODE="$HOME/.local/share/zed/node/node-v24.11.0-linux-x64/bin/node"
     if [ -f "$ZED_NODE" ]; then
         echo "Using local Node.js engine file server..."
         echo "Access your website at: http://localhost:$PORT"

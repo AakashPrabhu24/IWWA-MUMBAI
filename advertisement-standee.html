@@ -266,21 +266,77 @@
                 transform: translateY(-10px);
             }
         }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Error States styling */
+        .error-msg {
+            color: #ba1a1a;
+            font-size: 12px;
+            margin-top: 4px;
+            font-weight: 500;
+            display: none;
+            text-align: left;
+            animation: slideUp 0.3s ease-out;
+            padding-left: 4px;
+        }
+        
+        .error-msg.visible {
+            display: block;
+        }
+
+        .form-input.invalid,
+        input.form-input.invalid,
+        select.form-input.invalid {
+            border-color: #ba1a1a !important;
+        }
+
+        .space-y-2.invalid label {
+            color: #ba1a1a !important;
+        }
+
+        /* Alert Banner */
+        .alert-banner {
+            background-color: #ffdad6;
+            color: #410002;
+            border: 1px solid #ffb4ab;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        .alert-banner span.material-symbols-outlined {
+            color: #ba1a1a;
+        }
 
     </style>
 </head>
-<body class="min-h-screen">
+<body class="min-h-screen flex flex-col overflow-x-hidden bg-[#f8f9fa] text-[#1a1c1c]">
     <!-- TopNavBar -->
     <header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-3 flex justify-between items-center w-full">
-            <div class="flex items-center gap-2 cursor-pointer" onclick="location.href='index.html'">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="location.href='home.html'">
                 <img src="logo.png" alt="IWWA Mumbai" class="h-12 object-contain"/>
             </div>
             <nav class="relative hidden md:flex items-center gap-8">
-                <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="index.html">Home</a>
+                <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="home.html">Home</a>
                 <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="delegate-registration.html">Delegate Registration</a>
                 <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="sponsorship.html">Sponsorship</a>
                 <a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 font-bold font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="advertisement-standee.html">Advertisement Standee</a>
+                <a class="text-secondary dark:text-on-surface-variant font-medium font-label-lg text-label-lg hover:text-primary-container transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" href="technical-paper.html">Technical Paper And Submissions</a>
             </nav>
             <button id="menu-trigger" class="md:hidden p-2 text-primary" aria-label="Open navigation menu">
                 <span class="material-symbols-outlined text-[28px] pointer-events-none">menu</span>
@@ -301,16 +357,17 @@
                 </button>
             </div>
             <nav class="flex flex-col gap-6">
-                <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="index.html">Home</a>
+                <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="home.html">Home</a>
                 <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="delegate-registration.html">Delegate Registration</a>
                 <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="sponsorship.html">Sponsorship</a>
                 <a class="text-primary font-bold font-label-lg text-lg hover:text-primary-container" href="advertisement-standee.html">Advertisement Standee</a>
+                <a class="text-secondary font-medium font-label-lg text-lg hover:text-primary-container" href="technical-paper.html">Technical Paper And Submissions</a>
             </nav>
         </div>
     </div>
 
     <!-- Main Content Canvas -->
-    <main class="pt-32 pb-20 px-4 md:px-12 max-w-7xl mx-auto">
+    <main class="pt-32 pb-20 px-4 md:px-12 max-w-7xl mx-auto flex-grow">
         <header class="mb-12 text-center md:text-left">
             <h1 class="font-display-lg-mobile md:font-display-lg text-primary mb-2 uppercase tracking-wide">IWWA National Seminar</h1>
             <p class="text-secondary font-headline-md font-bold uppercase tracking-wider text-xl mb-4">Urban Water – Issues &amp; Solutions</p>
@@ -331,28 +388,95 @@
                         <p class="text-sm opacity-80">+ 5% GST applicable</p>
                     </div>
                 </div>
+
+                <!-- SCAN & PAY Card -->
+                <div class="glass-card bg-white border border-outline-variant/30 rounded-lg p-8 shadow-sm flex flex-col gap-6 text-center" style="animation: slideUp 0.6s ease-out 0.1s both; padding: 40px 24px;">
+                    <h2 class="text-primary font-bold text-headline-md uppercase tracking-wide">SCAN & PAY</h2>
+                    <p style="color: #414754; font-size: 15px; line-height: 1.6;">
+                        Scan the QR code using GPay, PhonePe, Paytm, BHIM, or any other UPI app to pay the advertisement fee.
+                    </p>
+                    <div style="border: 2px dashed #c1c6d6; border-radius: 16px; padding: 16px; background: white; max-width: 320px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <img src="payment-qr.png" alt="IDBI Bank UPI QR Code" style="width: 100%; height: auto; display: block; border-radius: 8px;"/>
+                    </div>
+                    <div style="background: #f3f3f4; padding: 16px; border-radius: 12px; text-align: left; font-size: 13px; color: #414754; border: 1px solid #c1c6d6; margin-top: 16px;">
+                        <div style="margin-bottom: 8px; font-weight: 600; color: #1a1c1c;">UPI / Bank Details:</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; gap: 12px;">
+                            <span>UPI ID:</span>
+                            <div style="display: flex; align-items: center; gap: 6px; max-width: 80%;">
+                                <span style="font-weight: 600; font-family: monospace; color: #005bbf; word-break: break-all; text-align: right;">indianwaterworksassociationmulund@idbi</span>
+                                <button type="button" onclick="copyText('indianwaterworksassociationmulund@idbi', this)" style="background: none; border: none; padding: 2px; color: #005bbf; cursor: pointer; display: inline-flex; align-items: center;" title="Copy UPI ID">
+                                    <span class="material-symbols-outlined" style="font-size: 16px;">content_copy</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+                            <span>Account No:</span>
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <span style="font-weight: 600; font-family: monospace; color: #1a1c1c;">52410010008770</span>
+                                <button type="button" onclick="copyText('52410010008770', this)" style="background: none; border: none; padding: 2px; color: #1a1c1c; cursor: pointer; display: inline-flex; align-items: center;" title="Copy Account Number">
+                                    <span class="material-symbols-outlined" style="font-size: 16px;">content_copy</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Right Column: Form -->
-            <div class="lg:col-span-7">
+            <div class="lg:col-span-7" id="registration-card">
                 <div class="bg-white p-8 md:p-10 rounded-lg card-shadow border border-outline-variant/20">
+                    <!-- Top Error Summary Alert (Hidden by default) -->
+                    <div id="alert-banner" class="alert-banner hidden mb-6">
+                        <span class="material-symbols-outlined">error</span>
+                        <span id="alert-banner-text">Please correct the highlighted fields before submitting.</span>
+                    </div>
+
                     <h2 class="font-headline-md text-primary mb-8 flex items-center gap-3">
                         <span class="material-symbols-outlined">app_registration</span>
                         Advertisement Standee Form
                     </h2>
                     <!-- Form Block -->
-                    <form class="space-y-6" id="standeeForm">
-                        <div class="space-y-2">
+                    <form class="space-y-6" id="standeeForm" novalidate>
+                        <div class="space-y-2" id="field-wrapper-org">
                             <label class="text-label-lg text-on-surface-variant ml-4 font-semibold">Organisation</label>
                             <input id="orgInput" class="form-input" placeholder="Enter your full company name" required="" type="text">
+                            <p id="error-org" class="error-msg">Organisation name is required.</p>
                         </div>
-                        <div class="space-y-2">
+                        <div class="space-y-2" id="field-wrapper-email">
                             <label class="text-label-lg text-on-surface-variant ml-4 font-semibold">Email</label>
                             <input id="emailInput" class="form-input" placeholder="corporate@organization.com" required="" type="email">
+                            <p id="error-email" class="error-msg">Please enter a valid email address.</p>
                         </div>
-                        <div class="space-y-2">
+                        <div class="space-y-2" id="field-wrapper-mobile">
                             <label class="text-label-lg text-on-surface-variant ml-4 font-semibold">Mobile</label>
                             <input id="mobileInput" class="form-input" placeholder="10-digit mobile number" required="" type="tel" pattern="[0-9]{10}">
+                            <p id="error-mobile" class="error-msg">Please enter a valid 10-digit mobile number.</p>
+                        </div>
+
+                        <!-- Calculated Fee Box -->
+                        <div id="fee-box" style="background: #f3f3f4; border: 1px solid #c1c6d6; border-radius: 12px; padding: 20px; margin-top: 24px; animation: slideUp 0.3s ease-out;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+                                <span style="font-weight: 500; color: #525f71;">Base Fee:</span>
+                                <span id="base-fee-val" style="font-weight: 600; color: #1a1c1c;">₹10,000</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+                                <span style="font-weight: 500; color: #525f71;">GST (5%):</span>
+                                <span id="gst-val" style="font-weight: 600; color: #1a1c1c;">₹500</span>
+                            </div>
+                            <div style="border-top: 1px solid #c1c6d6; padding-top: 8px; margin-top: 8px; display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: 700; color: #005bbf;">Total Fee (to pay):</span>
+                                <span id="total-fee-val" style="font-weight: 800; color: #005bbf; font-size: 20px;">₹10,500</span>
+                            </div>
+                        </div>
+
+                        <!-- File Upload for Payment Receipt -->
+                        <div class="space-y-2" id="field-wrapper-receipt" style="margin-top: 24px;">
+                            <label class="text-label-lg text-on-surface-variant ml-4 font-semibold">Upload Payment Receipt (PDF or Image)</label>
+                            <div style="position: relative;">
+                                <span class="material-symbols-outlined" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #414754;">upload_file</span>
+                                <input id="receipt" type="file" accept="application/pdf,image/*" required class="form-input" style="padding-left: 52px; background: transparent;" />
+                            </div>
+                            <p id="error-receipt" class="error-msg">Please upload your payment receipt.</p>
                         </div>
 
                         <button id="submit-btn" class="w-full btn-primary py-4 text-body-lg ripple-effect font-bold flex items-center justify-center gap-2 shimmer-btn" type="submit">
@@ -393,23 +517,115 @@
 
     <script>
         // Google Apps Script Web App URL (Central Router URL)
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztRPlgagtxBh8r4pKnElD4gdH5kJamus6U9Y7rGegeF17zBolZgFgHjxjHKuVBoQ4y1Q/exec'; // Replace with deployed Web App URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzghAHPSVuaqoUvm-xccU1xCQ9mxsa-1vRtZ6sHxML4ftNATWG9USPe1CrXU47RxHcjCg/exec'; 
 
         const form = document.getElementById('standeeForm');
         const successState = document.getElementById('success-state');
+        const alertBanner = document.getElementById('alert-banner');
+        const alertBannerText = document.getElementById('alert-banner-text');
+        const registrationCard = document.getElementById('registration-card');
+
         const orgInput = document.getElementById('orgInput');
         const emailInput = document.getElementById('emailInput');
         const mobileInput = document.getElementById('mobileInput');
+        const receiptInput = document.getElementById('receipt');
+
         const submitBtn = document.getElementById('submit-btn');
         const btnText = document.getElementById('btn-text');
         const btnSpinner = document.getElementById('btn-spinner');
 
+        const feePaidText = "₹10,000 + ₹500 (5% GST) = ₹10,500";
+
+        // Real-time Validations
+        orgInput.addEventListener('input', function() {
+            validateField(this, this.value.trim() !== "", "Organisation name is required.");
+        });
+
+        emailInput.addEventListener('input', function() {
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const isValid = this.value.trim() !== "" && emailRegex.test(this.value.trim());
+            const errMsg = this.value.trim() === "" ? "Email address is required." : "Please enter a valid email address.";
+            validateField(this, isValid, errMsg);
+        });
+
+        mobileInput.addEventListener('input', function() {
+            const value = this.value.trim();
+            const isValid = value !== "" && /^\d{10}$/.test(value);
+            let errMsg = "Please enter a valid 10-digit mobile number.";
+            if (value === "") {
+                errMsg = "Mobile number is required.";
+            }
+            validateField(this, isValid, errMsg);
+        });
+
+        receiptInput.addEventListener('change', function() {
+            validateField(this, this.files.length > 0, "Payment receipt file is required.");
+        });
+
+        function validateField(inputEl, condition, errorMessage) {
+            const fieldWrapper = document.getElementById(`field-wrapper-${inputEl.id.replace('Input', '')}`);
+            const errorEl = document.getElementById(`error-${inputEl.id.replace('Input', '')}`);
+            if (!fieldWrapper || !errorEl) return condition;
+            
+            if (!condition) {
+                fieldWrapper.classList.add('invalid');
+                inputEl.classList.add('invalid');
+                errorEl.textContent = errorMessage;
+                errorEl.classList.add('visible');
+                return false;
+            } else {
+                fieldWrapper.classList.remove('invalid');
+                inputEl.classList.remove('invalid');
+                errorEl.classList.remove('visible');
+                return true;
+            }
+        }
+
+        // Convert file to base64 helper
+        async function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
 
+            // Run validations
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            const isOrgValid = validateField(orgInput, orgInput.value.trim() !== "", "Organisation name is required.");
+            const isEmailValid = validateField(
+                emailInput,
+                emailInput.value.trim() !== "" && emailRegex.test(emailInput.value.trim()),
+                emailInput.value.trim() === "" ? "Email address is required." : "Please enter a valid email address."
+            );
+            const isMobileValid = validateField(
+                mobileInput,
+                /^\d{10}$/.test(mobileInput.value.trim()),
+                "Please enter a valid 10-digit mobile number."
+            );
+            const isReceiptValid = validateField(receiptInput, receiptInput.files.length > 0, "Payment receipt file is required.");
+
+            const isFormValid = isOrgValid && isEmailValid && isMobileValid && isReceiptValid;
+
+            if (!isFormValid) {
+                alertBannerText.textContent = "Please correct the highlighted fields before submitting.";
+                alertBanner.classList.remove('hidden');
+                registrationCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                return;
+            }
+
+            alertBanner.classList.add('hidden');
+
             // Check if Apps Script Web App URL is configured
             if (SCRIPT_URL === 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE' || SCRIPT_URL === '') {
-                alert("Configuration Error: SCRIPT_URL has not been set. Please configure the Google Apps Script Web App URL at the top of the script.");
+                alertBannerText.textContent = "Configuration Error: SCRIPT_URL has not been set. Please configure the Google Apps Script Web App URL.";
+                alertBanner.classList.remove('hidden');
+                registrationCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 return;
             }
 
@@ -418,28 +634,52 @@
             btnText.classList.add('hidden');
             btnSpinner.style.display = 'block';
 
+            // Process receipt file
+            let base64Data = "";
+            let fileName = "";
+            const file = receiptInput.files[0];
+
+            if (file.size > 4 * 1024 * 1024) {
+                alertBannerText.textContent = "Receipt file is too large. Please upload a file smaller than 4MB.";
+                alertBanner.classList.remove('hidden');
+                registrationCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                resetSubmitButton();
+                return;
+            }
+
             try {
-                const params = new URLSearchParams({
+                base64Data = await getBase64(file);
+                fileName = file.name;
+            } catch (fileErr) {
+                alertBannerText.textContent = "Failed to process receipt file. Please select a valid file and try again.";
+                alertBanner.classList.remove('hidden');
+                registrationCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                resetSubmitButton();
+                return;
+            }
+
+            try {
+                const payload = {
                     formType: 'standee',
                     organisation: orgInput.value.trim(),
                     email: emailInput.value.trim(),
-                    mobile: mobileInput.value.trim()
+                    mobile: mobileInput.value.trim(),
+                    feePaid: feePaidText,
+                    fileName: fileName,
+                    fileData: base64Data
+                };
+
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload),
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8'
+                    }
                 });
 
-                const submitUrl = SCRIPT_URL + '?' + params.toString();
+                const result = await response.json();
 
-                // Use a hidden iframe to make the GET request
-                let iframe = document.getElementById('hidden-iframe');
-                if (!iframe) {
-                    iframe = document.createElement('iframe');
-                    iframe.id = 'hidden-iframe';
-                    iframe.style.display = 'none';
-                    document.body.appendChild(iframe);
-                }
-                iframe.src = submitUrl;
-
-                // Show success after allowing time for the request to complete
-                setTimeout(() => {
+                if (result.success) {
                     // Transition to success state
                     form.style.transition = 'opacity 0.4s ease';
                     form.style.opacity = '0';
@@ -455,13 +695,20 @@
                             successState.style.opacity = '1';
                             successState.style.transform = 'translateY(0)';
                         });
+                        
+                        registrationCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }, 400);
-
-                    resetSubmitButton();
-                }, 2000);
+                } else {
+                    alertBannerText.textContent = result.message || "Failed to submit registration. Please try again.";
+                    alertBanner.classList.remove('hidden');
+                    registrationCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                resetSubmitButton();
             } catch (error) {
                 console.error("Error submitting form:", error);
-                alert("An error occurred during submission. Please try again.");
+                alertBannerText.textContent = "Failed to submit registration. Please verify your connection or QR code receipt, and try again.";
+                alertBanner.classList.remove('hidden');
+                registrationCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 resetSubmitButton();
             }
         });
@@ -474,7 +721,19 @@
 
         function resetForm() {
             form.reset();
+            alertBanner.classList.add('hidden');
             
+            // Clear any invalid states
+            const fields = ['org', 'email', 'mobile', 'receipt'];
+            fields.forEach(f => {
+                const wrapper = document.getElementById(`field-wrapper-${f}`);
+                const input = document.getElementById(f === 'receipt' ? 'receipt' : f + 'Input');
+                const error = document.getElementById(`error-${f}`);
+                if (wrapper) wrapper.classList.remove('invalid');
+                if (input) input.classList.remove('invalid');
+                if (error) error.classList.remove('visible');
+            });
+
             successState.style.transition = 'opacity 0.4s ease';
             successState.style.opacity = '0';
             
@@ -512,7 +771,7 @@
         // Smooth Page transitions
         document.querySelectorAll('a').forEach(link => {
             const href = link.getAttribute('href');
-            if (href && (href.endsWith('.html') || href === 'index.html' || href.startsWith('delegate') || href.startsWith('sponsor') || href.startsWith('advertisement'))) {
+            if (href && (href.endsWith('.html') || href === 'home.html' || href.startsWith('delegate') || href.startsWith('sponsor') || href.startsWith('advertisement'))) {
                 link.addEventListener('click', function(e) {
                     if (link.getAttribute('target') === '_blank' || e.metaKey || e.ctrlKey) return;
                     e.preventDefault();
@@ -543,6 +802,19 @@
                 }, 600);
             });
         });
+
+        // Copy to clipboard helper
+        function copyText(text, btnEl) {
+            navigator.clipboard.writeText(text).then(() => {
+                const icon = btnEl.querySelector('.material-symbols-outlined');
+                icon.textContent = 'check';
+                icon.style.color = '#2e7d32'; // Green check
+                setTimeout(() => {
+                    icon.textContent = 'content_copy';
+                    icon.style.color = '';
+                }, 1500);
+            });
+        }
     </script>
 </body>
 </html>
