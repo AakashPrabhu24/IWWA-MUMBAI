@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: iwwa-mumbai-registration
+    env: static
+    buildCommand: "" # No build command required for static HTML/CSS/JS
+    publishPath: "." # Serve files from the root directory
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
